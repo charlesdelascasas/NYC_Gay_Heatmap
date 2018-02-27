@@ -7,3 +7,4 @@ Code also included for the data clean up for producing a heatmap of gay populati
 OCR was done in batch using Google Cloud OCR. The output is in NYC_GPS_OCR_data
 
 The images and translations are all named by their GPS coordinate.
+![alt text](./Gay_Density_Map.jpeg)
