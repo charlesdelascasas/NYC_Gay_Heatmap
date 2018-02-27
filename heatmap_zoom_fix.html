@@ -1,0 +1,58 @@
+// java script code to get google maps api to function properly with this data
+// in particular, whenever the user zooms in the map, rescale the size of the heatmap data points so that 
+// the color scale stays the same after zoom
+
+<!doctype html>
+
+    <style>
+       #map {
+        height: 500px;
+        width: 100%;
+       }
+    </style> 
+    <div id="map"></div>
+    <script>
+
+      var map, heatmap;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: {lat: 40.690, lng: -74.100},
+          mapTypeId: 'satellite',
+          maxZoom: 15,
+          minZoom: 10
+        });
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          dissipating: true,
+          radius: (10000)/(Math.pow(2,(20-map.getZoom()))),
+          map: map
+        });
+        heatmap.setMap(map);
+        
+        google.maps.event.addListener(map, 'zoom_changed', function () {
+              heatmap.setOptions({radius:getNewRadius()});
+          });
+}
+
+    #resize the heatmap dots if the user changes zooms so that map looks identical before and after zoom
+      function getNewRadius() {
+        return (10000)/(Math.pow(2,(20-map.getZoom())));
+      }
+
+
+      // Heatmap data
+      function getPoints() {
+        return [{location: new google.maps.LatLng( 40.5700,-73.85 ), weight:  1.38683182172 },
+  //copy all location data here
+ {location: new google.maps.LatLng( 40.8700,-74.10 ), weight:  3.1247400086 }
+   ];
+      }
+    </script>
+    <script 
+        src="https://maps.googleapis.com/maps/api/js?key=&libraries=visualization,geometry&callback=initMap">
+    </script>
+
+</!doctype>
