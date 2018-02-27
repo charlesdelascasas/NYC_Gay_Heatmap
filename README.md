@@ -1,4 +1,6 @@
 # NYC_Gay_Heatmap
+Check out interactive Google Maps version at geighborhoods.com
+
 Data set came from a script I wrote that spoofed the GPS in an android emulator
 while taking screen shots of profiles in gay dating site Grindr, which shows distance to nearby users.
 
